@@ -149,13 +149,13 @@ def first_linear(
         # Select exactly k nodes
         m.addConstr(gp.quicksum(x[i] for i in range(n)) == k)
 
-        # Add auxiliary constraints (1)
+        # Add auxiliary constraints x_i+y_j <= y_ij
         m.addConstrs(x[i] + x[j] - 1 <= y[i, j] for i in range(n) for j in range(i, n))
 
-        # Add auxiliary constraints (2)
+        # Add auxiliary constraints y_ij <= x_i
         m.addConstrs(y[i, j] <= x[i] for i in range(n) for j in range(i, n))
 
-        # Add auxiliary constraints (3)
+        # Add auxiliary constraints y_ij <= x_j
         m.addConstrs(y[i, j] <= x[j] for i in range(n) for j in range(i, n))
 
         # Add objective function
@@ -247,13 +247,13 @@ def second_linear(
         # Select exactly k nodes
         g.addConstr(gp.quicksum(x_g[i] for i in range(n)) == k)
 
-        # Constraint for w, x, ub
+        # Constraint for w, x, ub where w <= x * ub
         g.addConstrs(w[i] <= x_g[i] * ubi[i] for i in range(n))
 
-        # Constraint for w, x, lb
+        # Constraint for w, x, lb where w >= x * lb
         g.addConstrs(w[i] >= x_g[i] * lbi[i] for i in range(n))
 
-        # Constraint for w, x, q, lb
+        # Constraint for w, x, q, lb where w <= sum(x * Q[i, j]) - lbi[i] * (1 - x[i])
         g.addConstrs(
             w[i]
             <= gp.quicksum(x_g[j] * matrix[i, j] for j in range(n))

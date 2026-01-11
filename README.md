@@ -1,4 +1,4 @@
-# Project Title: Optimization Modeling with Python
+# Optimisation Modeling with Python
 
 This guide provides two methods for setting up your environment:
 1.  **Using Anaconda (Recommended)**: A comprehensive solution that simplifies package management for scientific computing.
