@@ -204,3 +204,17 @@ Once our setup is complete, we can run the notebooks:
 1.  Make sure we chosen environment (`optimization-env` or `.venv`) is active in the terminal.
 2.  Open any `.ipynb` file in VS Code.
 3.  Run cells individually by clicking the **Run** icon, or run the entire notebook by clicking **Run All** at the top.
+
+---
+
+## Keeping Your Project Updated with Git
+
+To ensure you have the latest version of the project files, you should periodically pull changes from the remote repository.
+
+1.  Open a terminal (or Git Bash on Windows).
+2.  Navigate to the project's root directory.
+3.  Run the following command to fetch and merge changes from the main branch:
+    ```bash
+    git pull origin main
+    ```
+This will update your local files with any new commits from the project's repository.
