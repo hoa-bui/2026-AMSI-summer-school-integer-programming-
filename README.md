@@ -27,10 +27,31 @@ If you don't have it already, download and install VS Code from the official web
 Choose the instructions for your operating system.
 
 **On macOS:**
+
+First, identify your Mac's processor type:
+-   Click the **Apple menu**  in the top-left corner of your screen and select **About This Mac**.
+-   If you see **Chip** followed by a name like "Apple M1", you have an **Apple Silicon** Mac.
+-   If you see **Processor** followed by a name like "Intel Core i7", you have an **Intel-based** Mac.
+
+**For Apple Silicon Macs (M1, M2, M3, etc.):**
 1.  Open the Terminal app.
-2.  Download the latest Anaconda installer script using `curl`. You can find the latest version on the [Anaconda repository](https://repo.anaconda.com/archive/).
+2.  Download the Anaconda installer for Apple Silicon (arm64).
     ```bash
-    # Replace with the latest version for macOS if needed
+    # This command downloads a recent version. Check the Anaconda repository for the latest.
+    curl -O https://repo.anaconda.com/archive/Anaconda3-2023.09-0-MacOSX-arm64.sh
+    ```
+3.  Run the installer script.
+    ```bash
+    bash Anaconda3-2023.09-0-MacOSX-arm64.sh
+    ```
+4.  Follow the on-screen prompts. It is recommended to accept the default settings.
+5.  Close and reopen your terminal for the changes to take effect.
+
+**For Intel-based Macs:**
+1.  Open the Terminal app.
+2.  Download the Anaconda installer for Intel (x86_64).
+    ```bash
+    # This command downloads a recent version. Check the Anaconda repository for the latest.
     curl -O https://repo.anaconda.com/archive/Anaconda3-2023.09-0-MacOSX-x86_64.sh
     ```
 3.  Run the installer script.
@@ -76,12 +97,12 @@ Choose the instructions for your operating system.
 
 ### 4. Create and Activate a Conda Environment
 
-This creates an isolated environment for the project's dependencies.
+This creates an isolated environment for the project's dependencies. **Python 3.9-3.11 is recommended.** The command below uses Python 3.11.
 
 1.  Open a new terminal in VS Code (`Terminal` > `New Terminal`).
 2.  Create a new Conda environment named `optimization-env`.
     ```bash
-    conda create --name optimization-env python=3.10
+    conda create --name optimization-env python=3.11
     ```
 3.  Activate the new environment.
     ```bash
@@ -111,7 +132,7 @@ Use this method if you prefer not to use Anaconda.
 
 ### 1. Install Python
 
-If you don't have Python installed, download it from the official website. Version 3.8 or newer is recommended.
+If you don't have Python installed, download it from the official website. **A version between Python 3.9 and 3.11 is recommended for this project.**
 
 -   [Download Python](https://www.python.org/downloads/)
 -   **Important**: On Windows, make sure to check the box that says **"Add Python to PATH"** during installation.
@@ -157,9 +178,34 @@ This creates a lightweight, isolated environment using Python's built-in `venv` 
 2.  Click on the **Select Kernel** button in the top-right corner.
 3.  From the list, select the Python interpreter located in your `.venv` folder.
 
-### 6. Install Required Packages
+### 6. Install a C Compiler (for Numba/Gurobi)
 
-With your virtual environment active, install all necessary packages from `requirements.txt`.
+Some packages, like `numba` (via `llvmlite`) and `gurobipy`, need a C compiler to be installed from source. Before installing the Python packages, you must install the appropriate build tools for your operating system.
+
+**On macOS:**
+Install the Xcode Command Line Tools by running the following command in your terminal:
+```bash
+xcode-select --install
+```
+Follow the on-screen instructions to complete the installation.
+
+**On Windows:**
+Install the Microsoft C++ Build Tools, which are part of Visual Studio.
+1.  Go to the [Visual Studio downloads page](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022).
+2.  Under the "All downloads" section, find **Build Tools for Visual Studio** and click **Download**.
+3.  Run the installer.
+4.  In the "Workloads" tab, select **Desktop development with C++** and click **Install**.
+
+**On Linux (Debian/Ubuntu):**
+Install the `build-essential` package, which includes the GCC compiler and other necessary tools.
+```bash
+sudo apt update
+sudo apt install build-essential
+```
+
+### 7. Install Required Packages
+
+With your virtual environment active and compiler installed, install all necessary packages from `requirements.txt`.
 
 ```bash
 pip install -r requirements.txt
