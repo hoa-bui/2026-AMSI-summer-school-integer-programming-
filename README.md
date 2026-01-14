@@ -245,7 +245,7 @@ Gurobi requires a license to run. Free, full-featured academic licenses are avai
 
 ## Alternative: Gurobi Web License Service (WLS)
 
-If you cannot connect to the university network or prefer a more flexible license, or you are using a Virtual Machine, you can use Gurobi's Web License Service (WLS). This allows you to use Gurobi from any network connection.
+If you are using a container, a virtual machine, or have trouble with the standard `grbgetkey` method, you can use Gurobi's Web License Service (WLS). **Note: Just like the standard academic license, WLS requires you to be connected to your university's network (e.g., on-campus Wi-Fi or through a VPN).**
 
 1.  **Request a WLS License**
     *   On the same [Gurobi Academic License Page](https://www.gurobi.com/academia/academic-program-and-licenses/), select the "Web License Service" option instead of the standard academic license.
@@ -263,7 +263,7 @@ If you cannot connect to the university network or prefer a more flexible licens
         WLSSECRET=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
         WLSTOKEN DURATION=...
         ```
-    *   Save the file. Gurobi will now automatically use this license without needing a VPN connection. This method is ideal for virtual machines.
+    *   Save the file. Gurobi will now use this license when you are connected to your university network. This method is ideal for virtual machines and containerized environments.
 
 ## Running the Notebooks
 
