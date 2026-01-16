@@ -270,10 +270,65 @@ If you are using a container, a virtual machine, or have trouble with the standa
 Once our setup is complete, we can run the notebooks:
 
 1.  Make sure we chosen environment (`optimization-env` or `.venv`) is active in the terminal.
-2.  Open any `.ipynb` file in VS Code.
+2.  Open any Jupyter Notebook (`.ipynb`) file from this project.
 3.  Run cells individually by clicking the **Run** icon, or run the entire notebook by clicking **Run All** at the top.
 
 ---
+
+## Recommended VS Code Extensions
+
+To enhance your development experience, we recommend installing the following Visual Studio Code extensions. You can find them by searching in the **Extensions** view (`Ctrl+Shift+X`).
+
+*   **Python** (ms-python.python)
+    *   **Publisher**: Microsoft
+    *   **Description**: Provides rich support for the Python language, including features like linting, debugging, and code navigation. It also includes the **Pylance** extension, which offers fast and powerful type-checking and autocompletion.
+
+*   **Jupyter** (ms-toolsai.jupyter)
+    *   **Publisher**: Microsoft
+    *   **Description**: Enables you to work with Jupyter Notebooks (`.ipynb` files) directly within VS Code, offering an interactive and integrated experience.
+
+*   **Black Formatter** (ms-python.black-formatter)
+    *   **Publisher**: Microsoft
+    *   **Description**: The official extension for the Black code formatter, allowing you to format your Python code automatically on save.
+
+## Code Formatting with Black
+
+To maintain a consistent code style, this project uses the [Black](https://github.com/psf/black) code formatter. It is recommended to configure your editor to use it.
+
+### 1. Install Black
+
+First, install Black into your active Conda or `venv` environment. If you have already installed the packages from `requirements.txt`, you can skip this step as Black is included.
+```bash
+pip install black
+```
+
+### 2. Configure VS Code
+
+You can configure VS Code to automatically format your Python files and Jupyter Notebook cells.
+
+1.  Open the Command Palette (`Ctrl+Shift+P`).
+2.  Search for and select **Preferences: Open User Settings (JSON)**.
+3.  Add or update the following configuration in your `settings.json` file.
+    **Important**: The `settings.json` file uses a strict JSON format. Be careful to place the new settings correctly inside the main curly braces `{}` and add commas between entries if needed. Incorrect formatting can cause your VS Code settings to stop working.
+
+    ```json
+    {
+        // ... your other settings
+        "[python]": {
+            "editor.defaultFormatter": "ms-python.black-formatter",
+            "editor.formatOnSave": true
+        },
+        "jupyter.formatOnSave": true,
+    }
+    ```
+
+**What these settings do:**
+*   `"[python]"`: These settings apply specifically to Python files.
+*   `"editor.defaultFormatter": "ms-python.black-formatter"`: Sets Black as the default formatter for Python code. VS Code may prompt you to install the Black Formatter extension by Microsoft, which you should do.
+*   `"editor.formatOnSave": true`: Automatically formats your `.py` files every time you save.
+*   `"jupyter.formatOnSave": true`: Automatically formats code cells in your Jupyter Notebooks (`.ipynb`) when you save the file.
+
+With this setup, your code will be formatted automatically, ensuring consistency across the project.
 
 ## Getting and Updating the Project with Git
 
