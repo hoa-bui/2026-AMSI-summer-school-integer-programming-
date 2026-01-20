@@ -221,19 +221,19 @@ Gurobi requires a license to run. Free, full-featured academic licenses are avai
 
 The Gurobi license file (`gurobi.lic`) is always stored in your user's home directory. If you need to find this location, here’s how:
 
-*   **On Windows:**
+* **On Windows:**
     1.  Open Command Prompt or PowerShell.
     2.  Type `echo %USERPROFILE%` and press Enter. This will print the path (e.g., `C:\Users\YourUsername`).
 
-*   **On macOS or Linux:**
+* **On macOS or Linux:**
     1.  Open a terminal.
     2.  Type `echo $HOME` or `echo ~` and press Enter. This will print the path (e.g., `/Users/YourUsername` or `/home/YourUsername`).
 
-### 1. Register on the Gurobi Website
+1. Register on the Gurobi Website
     *   Go to the [Gurobi Academic License Page](https://www.gurobi.com/academia/academic-program-and-licenses/).
     *   Register for an account using university or institutional email address. NOTE: we must be connected to the university's network (e.g., on-campus Wi-Fi or through a VPN) for the license to be validated.
 
-### 2. Request and Activate Your License
+2. Request and Activate Your License
     *   Once registered and logged in, navigate to the academic license page. We will see a `grbgetkey` command that includes a personal license key. It will look like this:
         ```bash
         grbgetkey xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -252,14 +252,23 @@ The Gurobi license file (`gurobi.lic`) is always stored in your user's home dire
         *   **Windows**: 
             `C:\Users\YourUsername\anaconda3\envs\optimization-env\Scripts\grbgetkey.exe [your_key]`
         *   **macOS**: 
-            `/Users/YourUsername/anaconda3/envs/optimization-env/bin/grbgetkey [your_key]`
+            `/Users/YourUsername/anaconda3/envs\optimization-env/bin/grbgetkey [your_key]`
         *   **Linux**: 
-            `/home/YourUsername/anaconda3/envs/optimization-env/bin/grbgetkey [your_key]`
+            `/home/YourUsername/anaconda3/envs\optimization-env/bin/grbgetkey [your_key]`
         *(Replace `YourUsername` and `[your_key]` accordingly)*
 
 ### 3. Verification
-    *   The command will connect to the Gurobi servers and automatically install a license file (`gurobi.lic`) in your home directory.
-    *   We only need to do this once per machine. The license is valid for one year and can be renewed for free by following the same process.
+
+You can verify that your license is installed correctly in a couple of ways:
+
+*   **Check for the license file**: Look for a file named `gurobi.lic` in your user's home directory (see the "Finding Your Home Directory" section above). If this file exists, a license has been installed.
+*   **Test with the Gurobi command**: Open a new terminal with your environment activated (`conda activate optimization-env` or `source .venv/bin/activate`). Run the following command:
+    ```bash
+    gurobi_cl --license
+    ```
+    If a valid license is found, it will display the license details. If not, it will report that no license was found.
+
+The license is valid for one year and can be renewed for free by following the same process.
 
 ---
 
@@ -267,15 +276,17 @@ The Gurobi license file (`gurobi.lic`) is always stored in your user's home dire
 
 If you are using a container, a virtual machine, or have trouble with the standard `grbgetkey` method, you can use Gurobi's Web License Service (WLS). **Note: Just like the standard academic license, WLS requires you to be connected to your university's network (e.g., on-campus Wi-Fi or through a VPN).**
 
-### 1. Request a WLS License
+1. Request a WLS License
     *   On the same [Gurobi Academic License Page](https://www.gurobi.com/academia/academic-program-and-licenses/), select the "Web License Service" option instead of the standard academic license.
     *   Gurobi will provide you with a set of credentials (API key, secret, etc.).
 
-### 2. Create a License File
-    *   Create a new file named `gurobi.lic` in your user's home directory (see the "Finding Your Home Directory" section above for details).
+2. Create a License File
+    *   Create a new file named `gurobi.lic` in your user's home directory. The location depends on your operating system:
+        *   **Windows:** The path is usually `C:\Users\YourUsername\`. You can find it by opening Command Prompt and typing `echo %USERPROFILE%`.
+        *   **macOS & Linux:** The path is usually `/Users/YourUsername/` or `/home/YourUsername/`. You can find it by opening a terminal and typing `echo $HOME`.
     *   Add the WLS credentials provided by Gurobi to this file. It should look something like this:
         
-        # Gurobi Web License Service
+    *    #### Gurobi Web License Service
         TYPE=WLS
         WLSACCESSID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
         WLSSECRET=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
