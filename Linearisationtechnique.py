@@ -6,10 +6,10 @@ from typing import Tuple
 
 def qp_model(
     n: int,
-    matrix: np.array,
+    matrix: np.ndarray,
     k: int,
     timeout: int = 3600,
-) -> Tuple[float, float, np.array, float]:
+) -> Tuple[float, float, np.ndarray, float]:
     """Solves the quadratic problem using Gurobi's native QP solver.
 
     Args:
@@ -86,10 +86,10 @@ def qp_model(
 
 def first_linear(
     n: int,
-    matrix: np.array,
+    matrix: np.ndarray,
     k: int,
     timeout: int = 3600,
-) -> Tuple[float, float, np.array, float]:
+) -> Tuple[float, float, np.ndarray, float]:
     """Solves the problem using the first standard linearization technique.
 
     Args:
@@ -179,10 +179,10 @@ def first_linear(
 
 def second_linear(
     n: int,
-    matrix: np.array,
+    matrix: np.ndarray,
     k: int,
     timeout: int = 3600,
-) -> Tuple[float, float, np.array, float]:
+) -> Tuple[float, float, np.ndarray, float]:
     """Solves the problem using the second linearization technique.
 
     Args:
